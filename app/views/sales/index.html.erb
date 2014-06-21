@@ -1,10 +1,8 @@
-<h1>Listing sales</h1>
+<h1>Wine sales for the week of <%= Date.today.to_formatted_s(:long)    %></h1>
 
 <table>
   <thead>
     <tr>
-      <th>Url</th>
-      <th>Picture</th>
       <th colspan="3"></th>
     </tr>
   </thead>
@@ -12,11 +10,10 @@
   <tbody>
     <% @sales.each do |sale| %>
       <tr>
-        <td><%= sale.url %></td>
         <td><%= link_to image_tag(sale.picture, height: "500"), sale.url %></td>
-        <td><%= link_to 'Show', sale %></td>
+        <!-- <td><%= link_to 'Show', sale %></td>
         <td><%= link_to 'Edit', edit_sale_path(sale) %></td>
-        <td><%= link_to 'Destroy', sale, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= link_to 'Destroy', sale, method: :delete, data: { confirm: 'Are you sure?' } %></td> -->
       </tr>
     <% end %>
   </tbody>

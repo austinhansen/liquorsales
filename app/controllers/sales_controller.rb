@@ -24,7 +24,10 @@ class SalesController < ApplicationController
   # POST /sales
   # POST /sales.json
   def create
-    @sale = Sale.new(sale_params)
+    superstore
+
+    @sale = Sale.new(url: @root_url, picture: @picture)
+    @sale.save
 
     respond_to do |format|
       if @sale.save
@@ -62,6 +65,22 @@ class SalesController < ApplicationController
   end
 
   private
+    def coop
+      url = "http://coopwinespiritsbeer.com/wines/weekly_specials/"
+      doc = Nokogiri::HTML(open(url))
+      @root = doc.at_css("#primary-content li:nth-child(2) a")
+      Cloudinary::Uploader.upload(@root.first.last, :public_id => @root.text, url: @root.first.last)
+    end
+
+    def superstore
+      url = "http://realcanadianliquorstore.ca/"
+      doc = Nokogiri::HTML(open(url))
+      @root = doc.at_css("#right-flyer-container img")
+      @root_url = @root.xpath('//div/a/@href').first.value
+      @root_text = "Superstore Liquor - " + Date.today.to_s
+      @picture = @root.xpath('//div/a/img/@src').first.value
+    end
+
     # Use callbacks to share common setup or constraints between actions.
     def set_sale
       @sale = Sale.find(params[:id])
