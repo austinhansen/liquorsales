@@ -4,6 +4,8 @@ class Sale < ActiveRecord::Base
   validates_uniqueness_of :url
   validates_uniqueness_of :picture
 
+  scope :current_week, ->{ where("created_at > ?", 1.week.ago).order(created_at: :desc) }
+
   # def generate_sales
   #   create_coop_sale
   # end
