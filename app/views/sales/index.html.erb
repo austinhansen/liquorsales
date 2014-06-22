@@ -1,4 +1,4 @@
-<h1>Wine sales for the week of <%= Date.today.to_formatted_s(:long)    %></h1>
+<h1>Wine sales for the week of <%= Date.today.beginning_of_week.to_formatted_s(:long)    %></h1>
 
 <table>
   <thead>
