@@ -10,6 +10,7 @@
   <tbody>
     <% @sales.each do |sale| %>
       <tr>
+        <td><%= sale.store_name %></td>
         <td><%= link_to image_tag(sale.picture, height: "500"), sale.url %></td>
         <!-- <td><%= link_to 'Show', sale %></td>
         <td><%= link_to 'Edit', edit_sale_path(sale) %></td>
