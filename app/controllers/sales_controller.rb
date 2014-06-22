@@ -26,12 +26,12 @@ class SalesController < ApplicationController
   def create
     superstore
 
-    @sale = Sale.new(url: @root_url, picture: @picture)
+    @sale = Sale.new(url: @root_url, picture: @picture, store_name: @name)
     @sale.save
 
     respond_to do |format|
       if @sale.save
-        format.html { redirect_to @sale, notice: 'Sale was successfully created.' }
+        format.html { redirect_to sales_path, notice: 'Sale was successfully created.' }
         format.json { render :show, status: :created, location: @sale }
       else
         format.html { render :new }
@@ -70,6 +70,7 @@ class SalesController < ApplicationController
       doc = Nokogiri::HTML(open(url))
       @root = doc.at_css("#primary-content li:nth-child(2) a")
       Cloudinary::Uploader.upload(@root.first.last, :public_id => @root.text, url: @root.first.last)
+      @name = "Co-op Liquor"
     end
 
     def superstore
@@ -79,6 +80,7 @@ class SalesController < ApplicationController
       @root_url = @root.xpath('//div/a/@href').first.value
       @root_text = "Superstore Liquor - " + Date.today.to_s
       @picture = @root.xpath('//div/a/img/@src').first.value
+      @name = "Superstore Liquor"
     end
 
     # Use callbacks to share common setup or constraints between actions.
