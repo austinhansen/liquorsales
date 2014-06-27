@@ -17,7 +17,8 @@ gem 'coffee-rails', '~> 4.0.0'
 gem 'cloudinary'
 
 gem 'rails_12factor'
-gem 'whenever'
+gem 'sidekiq'
+gem 'sidetiq'
 gem 'nokogiri'
 # Use jquery as the JavaScript library
 gem 'jquery-rails'
