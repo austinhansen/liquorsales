@@ -10,11 +10,23 @@ class SaleCreator
       coop_sale
     elsif @store_name == "superstore"
       superstore_sale
+    elsif @store_name == "liquor depot"
+      liquor_depot_sale
     end
     create_sale
   end
 
   private
+
+  def liquor_depot_sale
+    url = "http://www.liquorstoresgp.ca/Specials/Alberta/Flyer"
+    doc = Nokogiri::HTML(open(url))
+    root = doc.at_css("#dnn_ctr1360_ModuleContent img")
+
+    @name = "Liquor Depot"
+    @root_url = root.xpath('//div/a/@href')[6].value
+    @picture = "http://www.liquorstoresgp.ca" + root.attributes["src"].value
+  end
 
   def coop_sale
     url = "http://coopwinespiritsbeer.com/wines/weekly_specials/"
@@ -33,7 +45,6 @@ class SaleCreator
     root = doc.at_css("#right-flyer-container img")
 
     @root_url = root.xpath('//div/a/@href').first.value
-    @root_text = "Superstore Liquor - " + Date.today.to_s
     @picture = root.xpath('//div/a/img/@src').first.value
     @name = "Superstore Liquor"
   end
