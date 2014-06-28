@@ -19,9 +19,12 @@ class SaleCreator
   def coop_sale
     url = "http://coopwinespiritsbeer.com/wines/weekly_specials/"
     doc = Nokogiri::HTML(open(url))
-    @root = doc.at_css("#primary-content li:nth-child(2) a")
-    Cloudinary::Uploader.upload(@root.first.last, :public_id => @root.text, url: @root.first.last)
+    @root = doc.at_css("#primary-content li:nth-child(1) a")
+    upload = Cloudinary::Uploader.upload(@root.first.last)
     @name = "Co-op Liquor"
+    @root_url = upload["url"]
+    picture = ApplicationController.helpers.cl_image_tag("#{upload["public_id"]}.png")
+    @picture = picture[37..115]
   end
 
   def superstore_sale
