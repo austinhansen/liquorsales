@@ -3,7 +3,7 @@ class SuperstoreWorker
   include Sidetiq::Schedulable
 
   recurrence do
-    weekly(3).hour_of_day(12)
+    weekly.day(:wednesday)
   end
 
   def perform
