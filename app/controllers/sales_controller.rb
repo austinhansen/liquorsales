@@ -1,28 +1,20 @@
 class SalesController < ApplicationController
   before_action :set_sale, only: [:show, :edit, :update, :destroy]
 
-  # GET /sales
-  # GET /sales.json
   def index
     @sales = Sale.current_week
   end
 
-  # GET /sales/1
-  # GET /sales/1.json
   def show
   end
 
-  # GET /sales/new
   def new
     @sale = Sale.new
   end
 
-  # GET /sales/1/edit
   def edit
   end
 
-  # POST /sales
-  # POST /sales.json
   def create
     superstore
 
@@ -40,8 +32,6 @@ class SalesController < ApplicationController
     end
   end
 
-  # PATCH/PUT /sales/1
-  # PATCH/PUT /sales/1.json
   def update
     respond_to do |format|
       if @sale.update(sale_params)
@@ -54,8 +44,6 @@ class SalesController < ApplicationController
     end
   end
 
-  # DELETE /sales/1
-  # DELETE /sales/1.json
   def destroy
     @sale.destroy
     respond_to do |format|
