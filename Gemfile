@@ -23,6 +23,7 @@ gem 'nokogiri'
 gem "twitter-bootstrap-rails"
 gem 'sinatra', '>= 1.3.0', :require => nil
 gem 'slim', '2.0.1'
+gem 'unicorn-rails'
 
 # Use jquery as the JavaScript library
 gem 'jquery-rails'
