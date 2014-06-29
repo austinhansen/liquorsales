@@ -20,7 +20,11 @@ gem 'rails_12factor'
 gem 'sidekiq'
 gem 'sidetiq'
 gem 'nokogiri'
+
+gem "therubyracer"
+gem "less-rails" #Sprockets (what Rails 3.1 uses for its asset pipeline) supports LESS
 gem "twitter-bootstrap-rails"
+
 gem 'sinatra', '>= 1.3.0', :require => nil
 gem 'slim', '2.0.1'
 gem 'unicorn'
