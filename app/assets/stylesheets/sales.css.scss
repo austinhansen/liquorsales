@@ -1,8 +1,21 @@
 // Place all the styles related to the Sales controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+$break-small: 520px;
+$break-large: 1200px;
 
 .picture {
   float: left;
   margin-right: 20px;
+  max-width: 220px;
+  @media screen and (max-width: $break-small) {
+    margin-right: 0px;
+    max-width: 100%;
+  }
+}
+
+h1 {
+  @media screen and (max-width: $break-small) {
+    display:none;
+  }
 }

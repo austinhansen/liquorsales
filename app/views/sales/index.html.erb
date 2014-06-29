@@ -10,7 +10,7 @@
   <tbody>
     <% @sales.each do |sale| %>
         <div class="picture">
-          <%= link_to image_tag(sale.picture, width: "200"), sale.url %>
+          <%= link_to image_tag(sale.picture), sale.url %>
         </div>
     <% end %>
   </tbody>
